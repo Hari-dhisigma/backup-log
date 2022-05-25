@@ -1,0 +1,239 @@
+# Welcome to Serverless!
+#
+# This file is the main config file for your service.
+# It's very minimal at this point and uses default values.
+# You can always add more config options for more control.
+# We've included some commented out config examples here.
+# Just uncomment any of them to get that config option.
+#
+# For full config options, check the docs:
+#    docs.serverless.com
+#
+# Happy Coding!
+
+service: customerops
+# app and org for use with dashboard.serverless.com
+#app: your-app-name
+#org: your-org-name
+
+# You can pin your service to only deploy with a specific Serverless version
+# Check out our docs for more details
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  region: us-west-2
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - ec2:*
+      Resource: "*"
+  vpc:
+    securityGroupIds:
+      - sg-01dbfd7122c47c7db
+    subnetIds:
+      - subnet-0a3940bcf01255bd3
+      - subnet-06126529cb25f32bb
+      - subnet-017b65eef86ee6b14
+      - subnet-0135d613af644c8c6
+
+  # environment:
+  #   DB_host: '172.31.26.237'
+  #   DB_Name: devawsnmount
+  #   DB_user: dbadmin
+  #   DB_password: 3062020%K!c
+  environment:
+    DB_host: "localhost"
+    DB_Name: greenmount
+    DB_user: root
+    DB_password: admin
+    
+
+   
+  # you can overwrite defaults here
+  stage: dev
+#  region: us-east-1
+
+# you can add statements to the Lambda function's IAM Role here
+#  iam:
+#    role:
+#      statements:
+#        - Effect: "Allow"
+#          Action:
+#            - "s3:ListBucket"
+#          Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "ServerlessDeploymentBucket" } ] ]  }
+#        - Effect: "Allow"
+#          Action:
+#            - "s3:PutObject"
+#          Resource:
+#            Fn::Join:
+#              - ""
+#              - - "arn:aws:s3:::"
+#                - "Ref" : "ServerlessDeploymentBucket"
+#                - "/*"
+
+# you can define service wide environment variables here
+#  environment:
+#    variable1: value1
+
+# you can add packaging information here
+#package:
+#  patterns:
+#    - '!exclude-me.js'
+#    - '!exclude-me-dir/**'
+#    - include-me.js
+#    - include-me-dir/**
+
+functions:
+  getCustomer: ${file(config/functions/getCustomer.yml):function}
+  addCustomer: ${file(config/functions/addCustomer.yml):function}
+  updateCustomer: ${file(config/functions/updateCustomer.yml):function}
+  getproduct: ${file(config/functions/getproduct.yml):function}
+  getproductbyid: ${file(config/functions/getproductbyid.yml):function}
+  addproduct: ${file(config/functions/addproduct.yml):function}
+  productdelete: ${file(config/functions/productdelete.yml):function}
+  productupdate: ${file(config/functions/productupdate.yml):function}
+  productbulkinsert: ${file(config/functions/productbulkinsert.yml):function}
+  getvendor: ${file(config/functions/getvendor.yml):function}
+  getvendorbyid: ${file(config/functions/getvendorbyid.yml):function}
+  vendorinsert: ${file(config/functions/vendorinsert.yml):function}
+  vendordelete: ${file(config/functions/vendordelete.yml):function}
+  vendorupdate: ${file(config/functions/vendorupdate.yml):function}
+  vendorbulkinsert: ${file(config/functions/vendorbulkinsert.yml):function}
+  getproductcat: ${file(config/functions/getproductcat.yml):function}
+  getproductcatbyid: ${file(config/functions/getproductcatbyid.yml):function}
+  productcatinsert: ${file(config/functions/productcatinsert.yml):function}
+  productcatdelete: ${file(config/functions/productcatdelete.yml):function}
+  productcatupdate: ${file(config/functions/productcatupdate.yml):function}
+  productcatbulkinsert: ${file(config/functions/productcatbulkinsert.yml):function}
+  getprodctcatgrytssrel: ${file(config/functions/getprodctcatgrytssrel.yml):function}
+  getprodctcatgrytssrelbyid: ${file(config/functions/getprodctcatgrytssrelbyid.yml):function}
+  prodctcatgrytssrelinsert: ${file(config/functions/prodctcatgrytssrelinsert.yml):function}
+  prodctcatgrytssreldelete: ${file(config/functions/prodctcatgrytssreldelete.yml):function}
+  prodctcatgrytssrelupdate: ${file(config/functions/prodctcatgrytssrelupdate.yml):function}
+  prodctcatgrytssrelbulkinsert: ${file(config/functions/prodctcatgrytssrelbulkinsert.yml):function}
+  getprodctln: ${file(config/functions/getprodctln.yml):function}
+  getprodctlnbyid: ${file(config/functions/getprodctlnbyid.yml):function}
+  prodctlninsert: ${file(config/functions/prodctlninsert.yml):function}
+  prodctlndelete: ${file(config/functions/prodctlndelete.yml):function}
+  prodctlnupdate: ${file(config/functions/prodctlnupdate.yml):function}
+  prodctlnbulkinsert: ${file(config/functions/prodctlnbulkinsert.yml):function}
+  getprodctpackgrel: ${file(config/functions/getprodctpackgrel.yml):function}
+  getprodctpackgrelbyid: ${file(config/functions/getprodctpackgrelbyid.yml):function}
+  prodctpackgrelinsert: ${file(config/functions/prodctpackgrelinsert.yml):function}
+  prodctpackgreldelete: ${file(config/functions/prodctpackgreldelete.yml):function}
+  prodctpackgrelupdate: ${file(config/functions/prodctpackgrelupdate.yml):function}
+  prodctpackgrelbulkinsert: ${file(config/functions/prodctpackgrelbulkinsert.yml):function}
+  getprodctvendrrel: ${file(config/functions/getprodctvendrrel.yml):function}
+  getprodctvendrrelbyid: ${file(config/functions/getprodctvendrrelbyid.yml):function}
+  prodctvendrrelinsert: ${file(config/functions/prodctvendrrelinsert.yml):function}
+  prodctvendrreldelete: ${file(config/functions/prodctvendrreldelete.yml):function}
+  prodctvendrrelupdate: ${file(config/functions/prodctvendrrelupdate.yml):function}
+  prodctvendrrelbulkinsert: ${file(config/functions/prodctvendrrelbulkinsert.yml):function}
+  getsubprodcts: ${file(config/functions/getsubprodcts.yml):function}
+  getsubprodctsbyid: ${file(config/functions/getsubprodctsbyid.yml):function}
+  subprodctsinsert: ${file(config/functions/subprodctsinsert.yml):function}
+  subprodctsdelete: ${file(config/functions/subprodctsdelete.yml):function}
+  subprodctsupdate: ${file(config/functions/subprodctsupdate.yml):function}
+  subprodctsbulkinsert: ${file(config/functions/subprodctsbulkinsert.yml):function}
+  getsubprodctpackgrel: ${file(config/functions/getsubprodctpackgrel.yml):function}
+  getsubprodctpackgrelbyid: ${file(config/functions/getsubprodctpackgrelbyid.yml):function}
+  subprodctpackgrelinsert: ${file(config/functions/subprodctpackgrelinsert.yml):function}
+  subprodctpackgreldelete: ${file(config/functions/subprodctpackgreldelete.yml):function}
+  subprodctpackgrelupdate: ${file(config/functions/subprodctpackgrelupdate.yml):function}
+  subprodctpackgrelbulkinsert: ${file(config/functions/subprodctpackgrelbulkinsert.yml):function}
+  getcartndimns: ${file(config/functions/getcartndimns.yml):function}
+  getcartndimnsbyid: ${file(config/functions/getcartndimnsbyid.yml):function}
+  cartndimnsinsert: ${file(config/functions/cartndimnsinsert.yml):function}
+  cartndimnsdelete: ${file(config/functions/cartndimnsdelete.yml):function}
+  cartndimnsupdate: ${file(config/functions/cartndimnsupdate.yml):function}
+  cartndimnsbulkinsert: ${file(config/functions/cartndimnsbulkinsert.yml):function}
+  getschlninvclnrel: ${file(config/functions/getschlninvclnrel.yml):function}
+  getschlninvclnrelbyid: ${file(config/functions/getschlninvclnrelbyid.yml):function}
+  schlninvclnrelinsert: ${file(config/functions/schlninvclnrelinsert.yml):function}
+  schlninvclnreldelete: ${file(config/functions/schlninvclnreldelete.yml):function}
+  schlninvclnrelupdate: ${file(config/functions/schlninvclnrelupdate.yml):function}
+  schlninvclnrelbulkinsert: ${file(config/functions/schlninvclnrelbulkinsert.yml):function}
+  getschlnorddtlrel: ${file(config/functions/getschlnorddtlrel.yml):function}
+  getschlnorddtlrelbyid: ${file(config/functions/getschlnorddtlrelbyid.yml):function}
+  schlnorddtlrelinsert: ${file(config/functions/schlnorddtlrelinsert.yml):function}
+  schlnorddtlreldelete: ${file(config/functions/schlnorddtlreldelete.yml):function}
+  schlnorddtlrelupdate: ${file(config/functions/schlnorddtlrelupdate.yml):function}
+  schlnorddtlrelbulkinsert: ${file(config/functions/schlnorddtlrelbulkinsert.yml):function}
+  getpicklsthdr: ${file(config/functions/getpicklsthdr.yml):function}
+  getpicklsthdrbyid: ${file(config/functions/getpicklsthdrbyid.yml):function}
+  picklsthdrinsert: ${file(config/functions/picklsthdrinsert.yml):function}
+  picklsthdrdelete: ${file(config/functions/picklsthdrdelete.yml):function}
+  picklsthdrupdate: ${file(config/functions/picklsthdrupdate.yml):function}
+  picklsthdrbulkinsert: ${file(config/functions/picklsthdrbulkinsert.yml):function}
+  getpicklstln: ${file(config/functions/getpicklstln.yml):function}
+  getpicklstlnbyid: ${file(config/functions/getpicklstlnbyid.yml):function}
+  picklstlninsert: ${file(config/functions/picklstlninsert.yml):function}
+  picklstlndelete: ${file(config/functions/picklstlndelete.yml):function}
+  picklstlnupdate: ${file(config/functions/picklstlnupdate.yml):function}
+  picklstlnbulkinsert: ${file(config/functions/picklstlnbulkinsert.yml):function}
+  getpicklstdtl: ${file(config/functions/getpicklstdtl.yml):function}
+  getpicklstdtlbyid: ${file(config/functions/getpicklstdtlbyid.yml):function}
+  picklstdtlinsert: ${file(config/functions/picklstdtlinsert.yml):function}
+  picklstdtldelete: ${file(config/functions/picklstdtldelete.yml):function}
+  picklstdtlupdate: ${file(config/functions/picklstdtlupdate.yml):function}
+  picklstdtlbulkinsert: ${file(config/functions/picklstdtlbulkinsert.yml):function}
+  getstatequerylist: ${file(config/functions/getstatequerylist.yml):function}
+  FetchReasonQuery: ${file(config/functions/FetchReasonQuery.yml):function}
+  GetCountryDetailsQry: ${file(config/functions/GetCountryDetailsQry.yml):function}
+#  hello:
+#    handler: handler.hello
+ 
+#    The following are a few example events you can configure
+#    NOTE: Please make sure to change your handler code to work with those events
+#    Check the event documentation for details
+#    events:
+#      - http:
+#          path: /users/customerops
+#          method: get
+#          cors: true
+#      - websocket: $connect
+#      - s3: ${env:BUCKET}
+#      - schedule: rate(10 minutes)
+#      - sns: greeter-topic
+#      - stream: arn:aws:dynamodb:region:XXXXXX:table/foo/stream/1970-01-01T00:00:00.000
+#      - alexaSkill: amzn1.ask.skill.xx-xx-xx-xx
+#      - alexaSmartHome: amzn1.ask.skill.xx-xx-xx-xx
+#      - iot:
+#          sql: "SELECT * FROM 'some_topic'"
+#      - cloudwatchEvent:
+#          event:
+#            source:
+#              - "aws.ec2"
+#            detail-type:
+#              - "EC2 Instance State-change Notification"
+#            detail:
+#              state:
+#                - pending
+#      - cloudwatchLog: '/aws/lambda/hello'
+#      - cognitoUserPool:
+#          pool: MyUserPool
+#          trigger: PreSignUp
+#      - alb:
+#          listenerArn: arn:aws:elasticloadbalancing:us-east-1:XXXXXX:listener/app/my-load-balancer/50dc6c495c0c9188/
+#          priority: 1
+#          conditions:
+#            host: example.com
+#            path: /hello
+
+#    Define function environment variables here
+#    environment:
+#      variable2: value2
+
+# you can add CloudFormation resource templates here
+#resources:
+#  Resources:
+#    NewResource:
+#      Type: AWS::S3::Bucket
+#      Properties:
+#        BucketName: my-new-bucket
+#  Outputs:
+#     NewOutput:
+#       Description: "Description for the output"
+#       Value: "Some output value"

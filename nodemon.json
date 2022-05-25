@@ -1,0 +1,14 @@
+{
+  "env": {
+    "DB_host": "localhost",
+    "DB_user": "root",
+    "DB_password": "admin",
+    "DB_Name": "greenmount",
+    "LOCAL_ENV": true,
+    "AccessKeyID": "QUtJQTVITkJOT0pQSk1URk5WT1A=",
+    "SecretAccessKey": "SmRyKzJBZFlHeVd6TUVjeExlR2J1bDVjZ0VNZ0V5MkhMMGkrUWMzKw==",
+    "BucketName": "c2FsZXNwcm8tZGV2LXNhbGVwcm8xMDI=",
+    "Region": "dXMtd2VzdC0y",
+    "Path": "./src/backupLogWrite"
+  }
+}
