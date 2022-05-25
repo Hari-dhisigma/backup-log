@@ -1,0 +1,15 @@
+function:
+  handler: src/backupLogWrite/backupLog.backupLogHandler
+  package:
+    patterns:
+      - "!**/*"
+      - "node-modules/**"
+      - "src/backupLogWrite/backupLog.js"
+  events:
+    - http:
+        path: /backupLog
+        method: get
+        cors: true
+  timeout: 30
+package:
+  individually: true
